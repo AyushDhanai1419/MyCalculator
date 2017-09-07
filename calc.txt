@@ -1,0 +1,195 @@
+package com.example.android.mycalculator;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    String no[] = new String[2];
+
+
+    int i, j;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            no[0] = "";
+            j = 1;
+        } catch (UnsupportedOperationException e) {
+            display("Error");
+        }
+    }
+
+    public void clear_All(View view) {
+        no[0] = "";
+        display("ALL CLEAR");
+
+    }
+
+    public void delete(View view) {
+        if (no[0].equals("")) {
+            display("CALCULATED VALUE");
+        }
+        else {
+            no[0] = no[0].substring(0, no[0].length() - 1);
+            display(no[0]);
+        }
+        for(i=0;i<no[1].length();i++)
+        {
+            if(no[1].charAt(i)=='/' || no[1].charAt(i)=='-' || no[1].charAt(i)=='*' || no[1].charAt(i)=='+')
+            {
+                no[1] = no[1].substring(0, no[1].length() - 1);
+            }
+        }
+    }
+
+    public void seven(View view) {
+
+        no[0] = no[0] + "7";
+        display(no[0]);
+
+    }
+
+    public void eight(View view) {
+        no[0] = no[0] + "8";
+        display(no[0]);
+
+    }
+
+    public void nine(View view) {
+        no[0] = no[0] + "9";
+        display(no[0]);
+
+    }
+
+    public void four(View view) {
+        no[0] = no[0] + "4";
+        display(no[0]);
+
+    }
+
+    public void five(View view) {
+        no[0] = no[0] + "5";
+        display(no[0]);
+
+    }
+
+    public void six(View view) {
+        no[0] = no[0] + "6";
+        display(no[0]);
+
+    }
+
+    public void one(View view) {
+        no[0] = no[0] + "1";
+        display(no[0]);
+
+    }
+
+    public void two(View view) {
+        no[0] = no[0] + "2";
+        display(no[0]);
+
+    }
+
+    public void three(View view) {
+        no[0] = no[0] + "3";
+        display(no[0]);
+
+    }
+
+    public void zero(View view) {
+        no[0] = no[0] + "0";
+        display(no[0]);
+
+    }
+
+
+    public void divide(View view) {
+        no[1] = no[0];
+        no[0] = no[0] + "/";
+
+        display(no[0]);
+
+
+    }
+
+    public void multiply(View view) {
+        no[1] = no[0];
+        no[0] = no[0] + "*";
+
+        display(no[0]);
+
+    }
+
+    public void addition(View view) {
+        no[1] = no[0];
+        no[0] = no[0] + "+";
+
+        display(no[0]);
+
+    }
+
+    public void subtraction(View view) {
+        no[1] = no[0];
+        no[0] = no[0] + "-";
+
+        display(no[0]);
+
+    }
+
+    public void equal(View view) {
+
+
+        try {
+            for (i = 0; i < no[0].length(); i++) {
+
+                if (no[0].charAt(i) == '/') {
+                    no[0] = no[0].substring((i + 1), no[0].length());
+                    no[0] = String.valueOf(Double.valueOf(no[1]) / Double.valueOf(no[0]));
+                    display(no[0]);
+                    break;
+                } else if (no[0].charAt(i) == '*') {
+                    no[0] = no[0].substring((i + 1), no[0].length());
+                    no[0] = String.valueOf(Double.valueOf(no[1]) * Double.valueOf(no[0]));
+                    display(no[0]);
+                    break;
+                } else if (no[0].charAt(i) == '+') {
+                    no[0] = no[0].substring((i + 1), no[0].length());
+                    no[0] = String.valueOf(Double.valueOf(no[1]) + Double.valueOf(no[0]));
+                    display(no[0]);
+                    break;
+                } else if (no[0].charAt(i) == '-') {
+                    no[0] = no[0].substring((i + 1), no[0].length());
+                    no[0] = String.valueOf(Double.valueOf(no[1]) - Double.valueOf(no[0]));
+                    display(no[0]);
+                    break;
+                }
+            }
+        } catch (Exception r) {
+            display("Error");
+        }
+
+    }
+
+    public void point(View view) {
+        no[0] = no[0] + ".";
+        display(no[0]);
+    }
+
+    public void display(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.answer_text_view);
+        priceTextView.setText(message);
+    }
+}
+
+
+
+
+
+
+
+
